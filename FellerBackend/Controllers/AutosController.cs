@@ -69,7 +69,7 @@ return BadRequest(ResponseWrapper<object>.ErrorResponse("La marca es requerida")
       if (string.IsNullOrWhiteSpace(dto.Modelo))
       return BadRequest(ResponseWrapper<object>.ErrorResponse("El modelo es requerido"));
 
-       if (dto.Año < 1900 || dto.Año > DateTime.Now.Year + 1)
+       if (dto.Anio < 1900 || dto.Anio > DateTime.Now.Year + 1)
    return BadRequest(ResponseWrapper<object>.ErrorResponse("Año inválido"));
 
     if (dto.Precio <= 0)

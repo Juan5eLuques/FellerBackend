@@ -29,7 +29,7 @@ public class VehiculoService : IVehiculoService
          Id = a.Id,
       Marca = a.Marca,
            Modelo = a.Modelo,
-  Año = a.Año,
+    Anio = a.Anio,
            Precio = a.Precio,
      Descripcion = a.Descripcion,
       Disponible = a.Disponible,
@@ -39,8 +39,8 @@ public class VehiculoService : IVehiculoService
      TipoCombustible = a.TipoCombustible,
      Transmision = a.Transmision,
   Kilometraje = a.Kilometraje,
-            EsDestacado = a.EsDestacado,
-            OrdenDestacado = a.OrdenDestacado,
+        EsDestacado = a.EsDestacado,
+       OrdenDestacado = a.OrdenDestacado,
       Imagenes = a.Imagenes.Select(i => new DTOs.Autos.ImagenDto
      {
     Id = i.Id,
@@ -62,16 +62,16 @@ return null;
         return new AutoDto
         {
   Id = auto.Id,
-        Marca = auto.Marca,
+      Marca = auto.Marca,
  Modelo = auto.Modelo,
-   Año = auto.Año,
+   Anio = auto.Anio,
 Precio = auto.Precio,
     Descripcion = auto.Descripcion,
     Disponible = auto.Disponible,
          Estado = auto.Estado,
  FechaPublicacion = auto.FechaPublicacion,
-        Puertas = auto.Puertas,
-     TipoCombustible = auto.TipoCombustible,
+   Puertas = auto.Puertas,
+   TipoCombustible = auto.TipoCombustible,
      Transmision = auto.Transmision,
   Kilometraje = auto.Kilometraje,
  EsDestacado = auto.EsDestacado,
@@ -80,7 +80,7 @@ Precio = auto.Precio,
         {
       Id = i.Id,
     Url = i.Url
-            }).ToList()
+    }).ToList()
     };
     }
 
@@ -90,15 +90,15 @@ var auto = new Auto
         {
   Marca = dto.Marca,
        Modelo = dto.Modelo,
- Año = dto.Año,
+ Anio = dto.Anio,
        Precio = dto.Precio,
      Descripcion = dto.Descripcion,
         Disponible = dto.Disponible,
-            Estado = dto.Estado,
+      Estado = dto.Estado,
        FechaPublicacion = DateTime.UtcNow,
-            Puertas = dto.Puertas,
+    Puertas = dto.Puertas,
    TipoCombustible = dto.TipoCombustible,
-          Transmision = dto.Transmision,
+ Transmision = dto.Transmision,
    Kilometraje = dto.Kilometraje
 };
 
@@ -108,20 +108,20 @@ var auto = new Auto
      return new AutoDto
         {
      Id = auto.Id,
-     Marca = auto.Marca,
+  Marca = auto.Marca,
    Modelo = auto.Modelo,
-  Año = auto.Año,
+  Anio = auto.Anio,
    Precio = auto.Precio,
    Descripcion = auto.Descripcion,
     Disponible = auto.Disponible,
-      Estado = auto.Estado,
+  Estado = auto.Estado,
       FechaPublicacion = auto.FechaPublicacion,
-         Puertas = auto.Puertas,
-            TipoCombustible = auto.TipoCombustible,
-            Transmision = auto.Transmision,
+       Puertas = auto.Puertas,
+       TipoCombustible = auto.TipoCombustible,
+ Transmision = auto.Transmision,
 Kilometraje = auto.Kilometraje,
-            Imagenes = new List<DTOs.Autos.ImagenDto>()
-        };
+    Imagenes = new List<DTOs.Autos.ImagenDto>()
+};
     }
 
     public async Task<AutoDto> UpdateAutoAsync(int id, UpdateAutoDto dto)
@@ -140,32 +140,32 @@ Kilometraje = auto.Kilometraje,
     if (!string.IsNullOrWhiteSpace(dto.Modelo))
   auto.Modelo = dto.Modelo;
 
-        if (dto.Año.HasValue)
-     auto.Año = dto.Año.Value;
+      if (dto.Anio.HasValue)
+ auto.Anio = dto.Anio.Value;
 
         if (dto.Precio.HasValue)
   auto.Precio = dto.Precio.Value;
 
         if (dto.Descripcion != null)
-  auto.Descripcion = dto.Descripcion;
+auto.Descripcion = dto.Descripcion;
 
      if (dto.Disponible.HasValue)
    auto.Disponible = dto.Disponible.Value;
 
         if (!string.IsNullOrWhiteSpace(dto.Estado))
-            auto.Estado = dto.Estado;
+       auto.Estado = dto.Estado;
 
         if (dto.Puertas.HasValue)
        auto.Puertas = dto.Puertas.Value;
 
-        if (!string.IsNullOrWhiteSpace(dto.TipoCombustible))
+   if (!string.IsNullOrWhiteSpace(dto.TipoCombustible))
   auto.TipoCombustible = dto.TipoCombustible;
 
 if (dto.Transmision != null)
      auto.Transmision = dto.Transmision;
 
    if (dto.Kilometraje.HasValue)
-            auto.Kilometraje = dto.Kilometraje;
+         auto.Kilometraje = dto.Kilometraje;
 
    await _context.SaveChangesAsync();
 
@@ -174,17 +174,17 @@ if (dto.Transmision != null)
   Id = auto.Id,
     Marca = auto.Marca,
   Modelo = auto.Modelo,
-   Año = auto.Año,
+   Anio = auto.Anio,
           Precio = auto.Precio,
       Descripcion = auto.Descripcion,
    Disponible = auto.Disponible,
       Estado = auto.Estado,
          FechaPublicacion = auto.FechaPublicacion,
-            Puertas = auto.Puertas,
+    Puertas = auto.Puertas,
             TipoCombustible = auto.TipoCombustible,
-         Transmision = auto.Transmision,
-            Kilometraje = auto.Kilometraje,
-       Imagenes = auto.Imagenes.Select(i => new DTOs.Autos.ImagenDto
+      Transmision = auto.Transmision,
+     Kilometraje = auto.Kilometraje,
+    Imagenes = auto.Imagenes.Select(i => new DTOs.Autos.ImagenDto
    {
   Id = i.Id,
      Url = i.Url
@@ -240,29 +240,29 @@ try
     .Select(m => new MotoDto
 {
       Id = m.Id,
-       Marca = m.Marca,
-     Modelo = m.Modelo,
-        Año = m.Año,
+  Marca = m.Marca,
+   Modelo = m.Modelo,
+        Anio = m.Anio,
  Precio = m.Precio,
    Descripcion = m.Descripcion,
-    Disponible = m.Disponible,
+   Disponible = m.Disponible,
       Estado = m.Estado,
      FechaPublicacion = m.FechaPublicacion,
        Cilindrada = m.Cilindrada,
  TipoMoto = m.TipoMoto,
-      Kilometraje = m.Kilometraje,
+  Kilometraje = m.Kilometraje,
      Imagenes = m.Imagenes.Select(i => new DTOs.Motos.ImagenDto
     {
     Id = i.Id,
 Url = i.Url
  }).ToList()
 })
-         .ToListAsync();
+  .ToListAsync();
     }
 
     public async Task<MotoDto?> GetMotoByIdAsync(int id)
     {
-        var moto = await _context.Motos
+    var moto = await _context.Motos
   .Include(m => m.Imagenes)
    .FirstOrDefaultAsync(m => m.Id == id);
 
@@ -274,14 +274,14 @@ Url = i.Url
    Id = moto.Id,
  Marca = moto.Marca,
   Modelo = moto.Modelo,
-   Año = moto.Año,
+   Anio = moto.Anio,
       Precio = moto.Precio,
    Descripcion = moto.Descripcion,
 Disponible = moto.Disponible,
-         Estado = moto.Estado,
+     Estado = moto.Estado,
     FechaPublicacion = moto.FechaPublicacion,
-    Cilindrada = moto.Cilindrada,
-            TipoMoto = moto.TipoMoto,
+  Cilindrada = moto.Cilindrada,
+TipoMoto = moto.TipoMoto,
        Kilometraje = moto.Kilometraje,
     Imagenes = moto.Imagenes.Select(i => new DTOs.Motos.ImagenDto
 {
@@ -297,7 +297,7 @@ Disponible = moto.Disponible,
         {
             Marca = dto.Marca,
             Modelo = dto.Modelo,
-  Año = dto.Año,
+  Anio = dto.Anio,
             Precio = dto.Precio,
             Descripcion = dto.Descripcion,
      Disponible = dto.Disponible,
@@ -314,15 +314,15 @@ Disponible = moto.Disponible,
         return new MotoDto
         {
  Id = moto.Id,
-     Marca = moto.Marca,
-            Modelo = moto.Modelo,
-   Año = moto.Año,
-        Precio = moto.Precio,
+  Marca = moto.Marca,
+          Modelo = moto.Modelo,
+   Anio = moto.Anio,
+      Precio = moto.Precio,
       Descripcion = moto.Descripcion,
         Disponible = moto.Disponible,
     FechaPublicacion = moto.FechaPublicacion,
  Cilindrada = moto.Cilindrada,
-            TipoMoto = moto.TipoMoto,
+    TipoMoto = moto.TipoMoto,
   Kilometraje = moto.Kilometraje,
        Imagenes = new List<DTOs.Motos.ImagenDto>()
     };
@@ -337,15 +337,14 @@ Disponible = moto.Disponible,
    if (moto == null)
       throw new KeyNotFoundException($"Moto con ID {id} no encontrada");
 
- // Actualizar solo los campos proporcionados
    if (!string.IsNullOrWhiteSpace(dto.Marca))
 moto.Marca = dto.Marca;
 
  if (!string.IsNullOrWhiteSpace(dto.Modelo))
    moto.Modelo = dto.Modelo;
 
-   if (dto.Año.HasValue)
-     moto.Año = dto.Año.Value;
+   if (dto.Anio.HasValue)
+     moto.Anio = dto.Anio.Value;
 
    if (dto.Precio.HasValue)
    moto.Precio = dto.Precio.Value;
@@ -353,7 +352,7 @@ moto.Marca = dto.Marca;
 if (dto.Descripcion != null)
    moto.Descripcion = dto.Descripcion;
 
-      if (dto.Disponible.HasValue)
+  if (dto.Disponible.HasValue)
 moto.Disponible = dto.Disponible.Value;
 
         if (!string.IsNullOrWhiteSpace(dto.Estado))
@@ -362,28 +361,28 @@ moto.Disponible = dto.Disponible.Value;
   if (dto.Cilindrada.HasValue)
    moto.Cilindrada = dto.Cilindrada.Value;
 
-        if (dto.TipoMoto != null)
+      if (dto.TipoMoto != null)
      moto.TipoMoto = dto.TipoMoto;
 
-        if (dto.Kilometraje.HasValue)
+   if (dto.Kilometraje.HasValue)
   moto.Kilometraje = dto.Kilometraje;
 
       await _context.SaveChangesAsync();
 
-        return new MotoDto
+    return new MotoDto
       {
  Id = moto.Id,
  Marca = moto.Marca,
  Modelo = moto.Modelo,
- Año = moto.Año,
-       Precio = moto.Precio,
-       Descripcion = moto.Descripcion,
+ Anio = moto.Anio,
+    Precio = moto.Precio,
+    Descripcion = moto.Descripcion,
        Disponible = moto.Disponible,
-            Estado = moto.Estado,
-         FechaPublicacion = moto.FechaPublicacion,
+     Estado = moto.Estado,
+    FechaPublicacion = moto.FechaPublicacion,
     Cilindrada = moto.Cilindrada,
    TipoMoto = moto.TipoMoto,
-    Kilometraje = moto.Kilometraje,
+  Kilometraje = moto.Kilometraje,
    Imagenes = moto.Imagenes.Select(i => new DTOs.Motos.ImagenDto
        {
     Id = i.Id,
@@ -441,23 +440,23 @@ Url = i.Url
     {
         return await _context.Autos
  .Include(a => a.Imagenes)
-            .Where(a => a.EsDestacado && a.Disponible)
-            .OrderBy(a => a.OrdenDestacado ?? int.MaxValue)
-       .ThenByDescending(a => a.FechaPublicacion)
+    .Where(a => a.EsDestacado && a.Disponible)
+        .OrderBy(a => a.OrdenDestacado ?? int.MaxValue)
+   .ThenByDescending(a => a.FechaPublicacion)
      .Select(a => new AutoDto
-            {
+   {
            Id = a.Id,
      Marca = a.Marca,
-                Modelo = a.Modelo,
-                Año = a.Año,
+      Modelo = a.Modelo,
+                Anio = a.Anio,
     Precio = a.Precio,
-     Descripcion = a.Descripcion,
-            Disponible = a.Disponible,
+  Descripcion = a.Descripcion,
+     Disponible = a.Disponible,
       Estado = a.Estado,
       FechaPublicacion = a.FechaPublicacion,
-          Puertas = a.Puertas,
+    Puertas = a.Puertas,
   TipoCombustible = a.TipoCombustible,
-    Transmision = a.Transmision,
+   Transmision = a.Transmision,
            Kilometraje = a.Kilometraje,
    EsDestacado = a.EsDestacado,
      OrdenDestacado = a.OrdenDestacado,
@@ -465,9 +464,9 @@ Url = i.Url
   {
         Id = i.Id,
      Url = i.Url
-          }).ToList()
-            })
-     .ToListAsync();
+      }).ToList()
+       })
+   .ToListAsync();
     }
 
     public async Task<List<MotoDto>> GetMotosDestacadasAsync()
@@ -479,28 +478,28 @@ Url = i.Url
        .ThenByDescending(m => m.FechaPublicacion)
  .Select(m => new MotoDto
  {
-       Id = m.Id,
-          Marca = m.Marca,
+  Id = m.Id,
+   Marca = m.Marca,
  Modelo = m.Modelo,
-Año = m.Año,
+Anio = m.Anio,
       Precio = m.Precio,
-        Descripcion = m.Descripcion,
-           Disponible = m.Disponible,
-       Estado = m.Estado,
+   Descripcion = m.Descripcion,
+  Disponible = m.Disponible,
+    Estado = m.Estado,
    FechaPublicacion = m.FechaPublicacion,
  Cilindrada = m.Cilindrada,
-     TipoMoto = m.TipoMoto,
-      Kilometraje = m.Kilometraje,
+ TipoMoto = m.TipoMoto,
+  Kilometraje = m.Kilometraje,
    EsDestacado = m.EsDestacado,
   OrdenDestacado = m.OrdenDestacado,
       Imagenes = m.Imagenes.Select(i => new DTOs.Motos.ImagenDto
-                {
+       {
 Id = i.Id,
-         Url = i.Url
+      Url = i.Url
   }).ToList()
-            })
-        .ToListAsync();
-    }
+      })
+  .ToListAsync();
+  }
 
     public async Task<List<object>> GetVehiculosDestacadosAsync()
     {
@@ -535,89 +534,89 @@ return moto.OrdenDestacado ?? int.MaxValue;
     {
         var auto = await _context.Autos
   .Include(a => a.Imagenes)
-         .FirstOrDefaultAsync(a => a.Id == id);
+      .FirstOrDefaultAsync(a => a.Id == id);
 
-        if (auto == null)
+  if (auto == null)
 throw new KeyNotFoundException($"Auto con ID {id} no encontrado");
 
         if (!orden.HasValue)
         {
      var maxOrden = await _context.Vehiculos
-           .Where(v => v.EsDestacado && v.OrdenDestacado.HasValue)
-      .MaxAsync(v => (int?)v.OrdenDestacado) ?? 0;
+   .Where(v => v.EsDestacado && v.OrdenDestacado.HasValue)
+    .MaxAsync(v => (int?)v.OrdenDestacado) ?? 0;
         orden = maxOrden + 1;
-      }
+  }
 
         auto.EsDestacado = true;
-        auto.OrdenDestacado = orden.Value;
+   auto.OrdenDestacado = orden.Value;
         await _context.SaveChangesAsync();
 
         return new AutoDto
         {
-            Id = auto.Id,
-            Marca = auto.Marca,
-        Modelo = auto.Modelo,
-            Año = auto.Año,
+      Id = auto.Id,
+   Marca = auto.Marca,
+  Modelo = auto.Modelo,
+      Anio = auto.Anio,
    Precio = auto.Precio,
-       Descripcion = auto.Descripcion,
-          Disponible = auto.Disponible,
-            Estado = auto.Estado,
+    Descripcion = auto.Descripcion,
+     Disponible = auto.Disponible,
+     Estado = auto.Estado,
  FechaPublicacion = auto.FechaPublicacion,
-            Puertas = auto.Puertas,
-     TipoCombustible = auto.TipoCombustible,
+ Puertas = auto.Puertas,
+    TipoCombustible = auto.TipoCombustible,
      Transmision = auto.Transmision,
  Kilometraje = auto.Kilometraje,
-            EsDestacado = auto.EsDestacado,
+    EsDestacado = auto.EsDestacado,
 OrdenDestacado = auto.OrdenDestacado,
   Imagenes = auto.Imagenes.Select(i => new DTOs.Autos.ImagenDto
-            {
-    Id = i.Id,
-           Url = i.Url
-            }).ToList()
+        {
+Id = i.Id,
+    Url = i.Url
+        }).ToList()
         };
     }
 
   public async Task<MotoDto> MarcarMotoComoDestacadaAsync(int id, int? orden = null)
     {
         var moto = await _context.Motos
-          .Include(m => m.Imagenes)
-            .FirstOrDefaultAsync(m => m.Id == id);
+       .Include(m => m.Imagenes)
+     .FirstOrDefaultAsync(m => m.Id == id);
 
         if (moto == null)
 throw new KeyNotFoundException($"Moto con ID {id} no encontrada");
 
-        if (!orden.HasValue)
+   if (!orden.HasValue)
         {
 var maxOrden = await _context.Vehiculos
-       .Where(v => v.EsDestacado && v.OrdenDestacado.HasValue)
-                .MaxAsync(v => (int?)v.OrdenDestacado) ?? 0;
-            orden = maxOrden + 1;
-      }
+     .Where(v => v.EsDestacado && v.OrdenDestacado.HasValue)
+              .MaxAsync(v => (int?)v.OrdenDestacado) ?? 0;
+      orden = maxOrden + 1;
+  }
 
-        moto.EsDestacado = true;
-        moto.OrdenDestacado = orden.Value;
-     await _context.SaveChangesAsync();
+    moto.EsDestacado = true;
+   moto.OrdenDestacado = orden.Value;
+ await _context.SaveChangesAsync();
 
    return new MotoDto
         {
  Id = moto.Id,
-          Marca = moto.Marca,
+    Marca = moto.Marca,
   Modelo = moto.Modelo,
-      Año = moto.Año,
-            Precio = moto.Precio,
+      Anio = moto.Anio,
+     Precio = moto.Precio,
     Descripcion = moto.Descripcion,
-            Disponible = moto.Disponible,
-         Estado = moto.Estado,
+     Disponible = moto.Disponible,
+Estado = moto.Estado,
      FechaPublicacion = moto.FechaPublicacion,
-      Cilindrada = moto.Cilindrada,
-          TipoMoto = moto.TipoMoto,
-            Kilometraje = moto.Kilometraje,
-         EsDestacado = moto.EsDestacado,
-   OrdenDestacado = moto.OrdenDestacado,
-      Imagenes = moto.Imagenes.Select(i => new DTOs.Motos.ImagenDto
+ Cilindrada = moto.Cilindrada,
+  TipoMoto = moto.TipoMoto,
+    Kilometraje = moto.Kilometraje,
+       EsDestacado = moto.EsDestacado,
+  OrdenDestacado = moto.OrdenDestacado,
+    Imagenes = moto.Imagenes.Select(i => new DTOs.Motos.ImagenDto
    {
-       Id = i.Id,
-                Url = i.Url
+    Id = i.Id,
+       Url = i.Url
       }).ToList()
  };
     }
@@ -638,62 +637,63 @@ var maxOrden = await _context.Vehiculos
      return new AutoDto
         {
       Id = auto.Id,
-            Marca = auto.Marca,
+      Marca = auto.Marca,
     Modelo = auto.Modelo,
-   Año = auto.Año,
+   Anio = auto.Anio,
    Precio = auto.Precio,
       Descripcion = auto.Descripcion,
-            Disponible = auto.Disponible,
-            Estado = auto.Estado,
-         FechaPublicacion = auto.FechaPublicacion,
+  Disponible = auto.Disponible,
+      Estado = auto.Estado,
+      FechaPublicacion = auto.FechaPublicacion,
  Puertas = auto.Puertas,
-            TipoCombustible = auto.TipoCombustible,
-            Transmision = auto.Transmision,
-            Kilometraje = auto.Kilometraje,
+    TipoCombustible = auto.TipoCombustible,
+    Transmision = auto.Transmision,
+    Kilometraje = auto.Kilometraje,
    EsDestacado = auto.EsDestacado,
   OrdenDestacado = auto.OrdenDestacado,
-            Imagenes = auto.Imagenes.Select(i => new DTOs.Autos.ImagenDto
-            {
+    Imagenes = auto.Imagenes.Select(i => new DTOs.Autos.ImagenDto
+    {
    Id = i.Id,
-            Url = i.Url
-          }).ToList()
-        };
-    }
+       Url = i.Url
+     }).ToList()
+   };
+  }
 
     public async Task<MotoDto> DesmarcarMotoDestacadaAsync(int id)
     {
-        var moto = await _context.Motos
-            .Include(m => m.Imagenes)
+ var moto = await _context.Motos
+       .Include(m => m.Imagenes)
   .FirstOrDefaultAsync(m => m.Id == id);
 
  if (moto == null)
 throw new KeyNotFoundException($"Moto con ID {id} no encontrada");
 
-        moto.EsDestacado = false;
+  moto.EsDestacado = false;
  moto.OrdenDestacado = null;
-        await _context.SaveChangesAsync();
+   await _context.SaveChangesAsync();
 
     return new MotoDto
       {
-            Id = moto.Id,
+       Id = moto.Id,
  Marca = moto.Marca,
   Modelo = moto.Modelo,
-            Año = moto.Año,
+     Anio = moto.Anio,
    Precio = moto.Precio,
-         Descripcion = moto.Descripcion,
-          Disponible = moto.Disponible,
+      Descripcion = moto.Descripcion,
+   Disponible = moto.Disponible,
     Estado = moto.Estado,
-     FechaPublicacion = moto.FechaPublicacion,
-      Cilindrada = moto.Cilindrada,
+  FechaPublicacion = moto.FechaPublicacion,
+  Cilindrada = moto.Cilindrada,
      TipoMoto = moto.TipoMoto,
-            Kilometraje = moto.Kilometraje,
+    Kilometraje = moto.Kilometraje,
    EsDestacado = moto.EsDestacado,
   OrdenDestacado = moto.OrdenDestacado,
    Imagenes = moto.Imagenes.Select(i => new DTOs.Motos.ImagenDto
-            {
-     Id = i.Id,
-    Url = i.Url
-      }).ToList()
+      {
+   Id = i.Id,
+  Url = i.Url
+  }).ToList()
    };
     }
 }
+

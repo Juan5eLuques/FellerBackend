@@ -6,7 +6,7 @@ public abstract class VehiculoBase
     public string TipoVehiculo { get; set; } = string.Empty; // "Auto" o "Moto" - Para TPH
     public string Marca { get; set; } = string.Empty;
     public string Modelo { get; set; } = string.Empty;
-    public int Año { get; set; }
+    public int Anio { get; set; }
     public decimal Precio { get; set; }
     public string? Descripcion { get; set; }
     public bool Disponible { get; set; } = true;

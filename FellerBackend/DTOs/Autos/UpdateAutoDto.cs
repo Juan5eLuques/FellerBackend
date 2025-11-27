@@ -4,7 +4,7 @@ public class UpdateAutoDto
 {
     public string? Marca { get; set; }
     public string? Modelo { get; set; }
-    public int? Año { get; set; }
+    public int? Anio { get; set; }
     public decimal? Precio { get; set; }
     public string? Descripcion { get; set; }
     public bool? Disponible { get; set; }
