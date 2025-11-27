@@ -10,10 +10,12 @@ namespace FellerBackend.Services;
 public class VehiculoService : IVehiculoService
 {
     private readonly FellerDbContext _context;
+    private readonly IImagenService _imagenService;
 
-    public VehiculoService(FellerDbContext context)
+    public VehiculoService(FellerDbContext context, IImagenService imagenService)
     {
      _context = context;
+  _imagenService = imagenService;
     }
 
     // ==================== AUTOS ====================
@@ -192,10 +194,36 @@ if (dto.Transmision != null)
 
     public async Task<bool> DeleteAutoAsync(int id)
     {
-        var auto = await _context.Autos.FindAsync(id);
+        var auto = await _context.Autos
+  .Include(a => a.Imagenes)
+  .FirstOrDefaultAsync(a => a.Id == id);
 
         if (auto == null)
         return false;
+
+ // Eliminar imágenes de S3 antes de eliminar el auto
+        if (auto.Imagenes.Any())
+        {
+foreach (var imagen in auto.Imagenes)
+          {
+try
+     {
+       // Extraer el key de la URL de S3
+      // URL format: https://bucket.s3.region.amazonaws.com/key
+     // o: https://bucket.s3.amazonaws.com/key
+           var uri = new Uri(imagen.Url);
+   var key = uri.AbsolutePath.TrimStart('/');
+       
+    await _imagenService.DeleteImageAsync(key);
+  }
+ catch (Exception ex)
+            {
+        // Log error pero continuar con la eliminación
+      // TODO: Implementar logging
+          Console.WriteLine($"Error al eliminar imagen de S3: {ex.Message}");
+      }
+   }
+        }
 
     _context.Autos.Remove(auto);
         await _context.SaveChangesAsync();
@@ -366,10 +394,33 @@ Url = i.Url
 
     public async Task<bool> DeleteMotoAsync(int id)
   {
-        var moto = await _context.Motos.FindAsync(id);
+        var moto = await _context.Motos
+     .Include(m => m.Imagenes)
+      .FirstOrDefaultAsync(m => m.Id == id);
 
    if (moto == null)
   return false;
+
+     // Eliminar imágenes de S3 antes de eliminar la moto
+     if (moto.Imagenes.Any())
+ {
+            foreach (var imagen in moto.Imagenes)
+  {
+        try
+   {
+         // Extraer el key de la URL de S3
+    var uri = new Uri(imagen.Url);
+ var key = uri.AbsolutePath.TrimStart('/');
+  
+  await _imagenService.DeleteImageAsync(key);
+    }
+     catch (Exception ex)
+             {
+    // Log error pero continuar con la eliminación
+        Console.WriteLine($"Error al eliminar imagen de S3: {ex.Message}");
+  }
+        }
+  }
 
     _context.Motos.Remove(moto);
         await _context.SaveChangesAsync();
