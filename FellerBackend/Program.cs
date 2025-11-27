@@ -85,30 +85,40 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend", policy =>
     {
-        policy.WithOrigins(
- "http://localhost:3000",
-       "http://localhost:5173", 
-        "http://localhost:4200",
-        "http://localhost:5000",
-          "https://localhost:5000",
-   "http://localhost:8080",
+        var allowedOrigins = new List<string>
+        {
+       // Desarrollo local
+      "http://localhost:3000",
+     "http://localhost:5173",
+          "http://localhost:4200",
+            "http://localhost:5000",
+     "https://localhost:5000",
+"http://localhost:8080",
    "http://127.0.0.1:3000",
-   "http://127.0.0.1:5173",
-                "http://127.0.0.1:4200",
- "http://127.0.0.1:5000"
-      )
-   .AllowAnyHeader()
+            "http://127.0.0.1:5173",
+        "http://127.0.0.1:4200",
+        "http://127.0.0.1:5000"
+        };
+
+        // Agregar dominios de producción desde configuración
+      var productionOrigins = builder.Configuration["CORS:AllowedOrigins"];
+        if (!string.IsNullOrEmpty(productionOrigins))
+        {
+         allowedOrigins.AddRange(productionOrigins.Split(',', StringSplitOptions.RemoveEmptyEntries));
+        }
+
+        policy.WithOrigins(allowedOrigins.ToArray())
+       .AllowAnyHeader()
             .AllowAnyMethod()
-            .AllowCredentials()
-        .SetIsOriginAllowedToAllowWildcardSubdomains();
+ .AllowCredentials();
     });
 
     // Política más permisiva para desarrollo
     options.AddPolicy("AllowAll", policy =>
     {
         policy.AllowAnyOrigin()
-          .AllowAnyHeader()
-   .AllowAnyMethod();
+.AllowAnyHeader()
+        .AllowAnyMethod();
     });
 });
 
@@ -194,16 +204,8 @@ if (!app.Environment.IsDevelopment())
     app.UseHttpsRedirection();
 }
 
-// IMPORTANTE: El orden es crítico
-// Usar política más permisiva en desarrollo
-if (app.Environment.IsDevelopment())
-{
-    app.UseCors("AllowAll");
-}
-else
-{
-    app.UseCors("AllowFrontend");
-}
+// IMPORTANTE: El orden es crítico - CORS debe ir antes de Authentication
+app.UseCors("AllowFrontend");
 
 app.UseAuthentication();
 app.UseAuthorization();
