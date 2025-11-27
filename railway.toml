@@ -1,8 +1,2 @@
 [build]
 builder = "dockerfile"
-dockerfilePath = "FellerBackend/Dockerfile"
-
-[deploy]
-startCommand = "dotnet FellerBackend.dll"
-restartPolicyType = "on_failure"
-restartPolicyMaxRetries = 10
